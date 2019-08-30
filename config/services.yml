@@ -1,0 +1,35 @@
+imports:
+    - { resource: parameters.yml }
+
+services:
+    moonbird.talk.controller.acp:
+        class: moonbird\talk\controller\acp_controller
+        arguments:
+            - '@config'
+            - '@language'
+            - '@log'
+            - '@request'
+            - '@template'
+            - '@user'
+
+    moonbird.talk.service:
+        class: moonbird\talk\service
+        arguments:
+            - '@user'
+            - '%moonbird.talk.tables.talk_table%'
+
+    moonbird.talk.listener:
+        class: moonbird\talk\event\main_listener
+        arguments:
+            - '@language'
+        tags:
+            - { name: event.listener }
+
+    moonbird.talk.notification.type.sample:
+        class: moonbird\talk\notification\type\sample
+        shared: false # service MUST not be shared for this to work!
+        parent: notification.type.base
+        calls:
+            - [set_controller_helper, ['@controller.helper']]
+        tags:
+            - { name: notification.type }
