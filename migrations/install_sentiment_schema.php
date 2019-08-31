@@ -10,11 +10,11 @@
 
 namespace moonbird\talk\migrations;
 
-class install_sample_schema extends \phpbb\db\migration\migration
+class install_sentiment_schema extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return $this->db_tools->sql_column_exists($this->table_prefix . 'users', 'user_talk');
+		return $this->db_tools->sql_column_exists($this->table_prefix . 'posts', 'mb_sentiment_magnitude');
 	}
 
 	public static function depends_on()
@@ -44,18 +44,10 @@ class install_sample_schema extends \phpbb\db\migration\migration
 	public function update_schema()
 	{
 		return array(
-			'add_tables'		=> array(
-				$this->table_prefix . 'moonbird_talk_table'	=> array(
-					'COLUMNS'		=> array(
-						'talk_id'			=> array('UINT', null, 'auto_increment'),
-						'talk_name'			=> array('VCHAR:255', ''),
-					),
-					'PRIMARY_KEY'	=> 'talk_id',
-				),
-			),
 			'add_columns'	=> array(
-				$this->table_prefix . 'users'			=> array(
-					'user_talk'				=> array('UINT', 0),
+				$this->table_prefix . 'posts'			=> array(
+					'mb_sentiment_magnitude'			=> array('DECIMAL', null),
+					'mb_sentiment_score'				=> array('DECIMAL', null),
 				),
 			),
 		);
@@ -85,12 +77,10 @@ class install_sample_schema extends \phpbb\db\migration\migration
 	{
 		return array(
 			'drop_columns'	=> array(
-				$this->table_prefix . 'users'			=> array(
-					'user_talk',
+				$this->table_prefix . 'posts'			=> array(
+					'mb_sentiment_magnitude',
+					'mb_sentiment_score',
 				),
-			),
-			'drop_tables'		=> array(
-				$this->table_prefix . 'moonbird_talk_table',
 			),
 		);
 	}

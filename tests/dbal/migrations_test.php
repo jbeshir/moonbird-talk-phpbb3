@@ -13,7 +13,7 @@ namespace moonbird\talk\tests\dbal;
 // Need to include functions.php to use phpbb_version_compare in this test
 require_once __DIR__ . '/../../../../../includes/functions.php';
 
-class simple_test extends \phpbb_database_test_case
+class migrations_test extends \phpbb_database_test_case
 {
 	/**
 	 * @inheritdoc
@@ -35,7 +35,7 @@ class simple_test extends \phpbb_database_test_case
 	}
 
 	/**
-	 * A simple test checking to see if the database users table was correctly updated
+	 * A simple test checking to see if the database posts table was correctly updated
 	 */
 	public function test_column()
 	{
@@ -53,7 +53,7 @@ class simple_test extends \phpbb_database_test_case
 			$db_tools = $factory->get($this->db);
 		}
 
-		$this->assertTrue($db_tools->sql_column_exists(USERS_TABLE, 'user_talk'), 'Asserting that column "user_talk" exists');
-		$this->assertFalse($db_tools->sql_column_exists(USERS_TABLE, 'user_talk_void'), 'Asserting that column "user_talk_void" does not exist');
+		$this->assertTrue($db_tools->sql_column_exists(POSTS_TABLE, 'mb_sentiment_magnitude'), 'Asserting that column "mb_sentiment_magnitude" exists');
+		$this->assertTrue($db_tools->sql_column_exists(POSTS_TABLE, 'mb_sentiment_score'), 'Asserting that column "mb_sentiment_score" exists');
 	}
 }
