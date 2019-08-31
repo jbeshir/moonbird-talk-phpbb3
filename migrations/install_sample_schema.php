@@ -37,7 +37,7 @@ class install_sample_schema extends \phpbb\db\migration\migration
 	 *	drop_keys: Dropping keys
 	 *
 	 * This sample migration adds a new column to the users table.
- 	* It also adds an example of a new table that can hold new data.
+	 * It also adds an example of a new table that can hold new data.
 	 *
 	 * @return array Array of schema changes
 	 */
