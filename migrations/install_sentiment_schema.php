@@ -46,7 +46,7 @@ class install_sentiment_schema extends \phpbb\db\migration\migration
 		return array(
 			'add_columns'	=> array(
 				$this->table_prefix . 'posts'			=> array(
-					'mb_sentiment_version'			=> array('INT', 0),
+					'mb_sentiment_version'			=> array('UINT', 0),
 					'mb_sentiment_magnitude'			=> array('DECIMAL', 0),
 					'mb_sentiment_score'				=> array('DECIMAL', 0),
 				),
