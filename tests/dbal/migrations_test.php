@@ -53,6 +53,7 @@ class migrations_test extends \phpbb_database_test_case
 			$db_tools = $factory->get($this->db);
 		}
 
+		$this->assertTrue($db_tools->sql_column_exists(POSTS_TABLE, 'mb_sentiment_version'), 'Asserting that column "mb_sentiment_version" exists');
 		$this->assertTrue($db_tools->sql_column_exists(POSTS_TABLE, 'mb_sentiment_magnitude'), 'Asserting that column "mb_sentiment_magnitude" exists');
 		$this->assertTrue($db_tools->sql_column_exists(POSTS_TABLE, 'mb_sentiment_score'), 'Asserting that column "mb_sentiment_score" exists');
 	}

@@ -46,8 +46,9 @@ class install_sentiment_schema extends \phpbb\db\migration\migration
 		return array(
 			'add_columns'	=> array(
 				$this->table_prefix . 'posts'			=> array(
-					'mb_sentiment_magnitude'			=> array('DECIMAL'),
-					'mb_sentiment_score'				=> array('DECIMAL'),
+					'mb_sentiment_version'			=> array('INT', 0),
+					'mb_sentiment_magnitude'			=> array('DECIMAL', 0),
+					'mb_sentiment_score'				=> array('DECIMAL', 0),
 				),
 			),
 		);
@@ -78,6 +79,7 @@ class install_sentiment_schema extends \phpbb\db\migration\migration
 		return array(
 			'drop_columns'	=> array(
 				$this->table_prefix . 'posts'			=> array(
+					'mb_sentiment_version',
 					'mb_sentiment_magnitude',
 					'mb_sentiment_score',
 				),
