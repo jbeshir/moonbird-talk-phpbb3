@@ -26,8 +26,6 @@ class migrations_test extends \phpbb_database_test_case
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
-
-
 	/**
 	 * @inheritdoc
 	 */
@@ -41,6 +39,8 @@ class migrations_test extends \phpbb_database_test_case
 	 */
 	public function test_column()
 	{
+		$this->db = $this->new_dbal();
+
 		if (phpbb_version_compare(PHPBB_VERSION, '3.2.0-dev', '<'))
 		{
 			// This is how to instantiate db_tools in phpBB 3.1
