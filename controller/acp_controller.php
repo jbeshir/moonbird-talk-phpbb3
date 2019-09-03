@@ -85,7 +85,7 @@ class acp_controller
 			if (empty($errors))
 			{
 				// Set the options the user configured
-				$this->config->set('moonbird_talk_api_key', $this->request->variable('moonbird_talk_api_key', 0));
+				$this->config->set('moonbird_talk_api_key', $this->request->variable('moonbird_talk_api_key', ''));
 
 				// Add option settings change action to the admin log
 				$this->log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_ACP_TALK_SETTINGS');
@@ -105,7 +105,7 @@ class acp_controller
 
 			'U_ACTION'		=> $this->u_action,
 
-			'MOONBIRD_TALK_API_KEY'	=> (bool) $this->config['moonbird_talk_api_key'],
+			'MOONBIRD_TALK_API_KEY'	=> $this->config['moonbird_talk_api_key'],
 		));
 	}
 
