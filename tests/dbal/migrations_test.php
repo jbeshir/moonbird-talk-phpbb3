@@ -41,9 +41,17 @@ class migrations_test extends \phpbb_database_test_case
 
 	public function setUp()
 	{
+		global $table_prefix;
+
 		parent::setUp();
 
-		$this->config = new \phpbb\config\config(array());
+		$this->db = $this->new_dbal();
+
+		$this->config = new \phpbb\config\db(
+			$this->db,
+			new \phpbb\cache\driver\dummy(),
+			$table_prefix . 'config'
+		);
 	}
 
 	/**
@@ -51,8 +59,6 @@ class migrations_test extends \phpbb_database_test_case
 	 */
 	public function test_column()
 	{
-		$this->db = $this->new_dbal();
-
 		if (phpbb_version_compare(PHPBB_VERSION, '3.2.0-dev', '<'))
 		{
 			// This is how to instantiate db_tools in phpBB 3.1
