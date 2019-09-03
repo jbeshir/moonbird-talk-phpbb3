@@ -4,6 +4,11 @@
  */
 class phpbb_functional_acp_api_key_test extends phpbb_functional_test_case
 {
+	static protected function setup_extensions()
+	{
+		return array('moonbird/talk');
+	}
+
 	public function test_acp_api_key()
 	{
 		$this->login();
