@@ -1,2 +1,0 @@
-parameters:
-    moonbird.talk.tables.talk_table: '%core.table_prefix%moonbird_talk_table'

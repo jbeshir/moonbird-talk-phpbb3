@@ -16,7 +16,7 @@ services:
         class: moonbird\talk\service
         arguments:
             - '@user'
-            - '%moonbird.talk.tables.talk_table%'
+            - '@config'
 
     moonbird.talk.listener:
         class: moonbird\talk\event\main_listener

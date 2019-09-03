@@ -18,28 +18,18 @@ class service
 	/** @var \phpbb\user */
 	protected $user;
 
-	/** @var string */
-	protected $table_name;
+	/** @var \phpbb\config\config */
+	protected $config;
 
 	/**
 	 * Constructor
 	 *
 	 * @param \phpbb\user $user       User object
-	 * @param string      $table_name The name of a db table
+	 * @param \phpbb\config\config	$config	Config object
 	 */
-	public function __construct(\phpbb\user $user, $table_name)
+	public function __construct(\phpbb\user $user, \phpbb\config\config $config)
 	{
 		$this->user = $user;
-		$this->table_name = $table_name;
-	}
-
-	/**
-	 * Get user object
-	 *
-	 * @return \phpbb\user $user User object
-	 */
-	public function get_user()
-	{
-		return $this->user;
+		$this->config = $config;
 	}
 }
