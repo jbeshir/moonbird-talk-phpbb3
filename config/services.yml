@@ -1,6 +1,3 @@
-imports:
-    - { resource: parameters.yml }
-
 services:
     moonbird.talk.controller.acp:
         class: moonbird\talk\controller\acp_controller
