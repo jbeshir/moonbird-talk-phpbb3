@@ -21,10 +21,7 @@ class phpbb_functional_acp_api_key_test extends phpbb_functional_test_case
 		));
 		$crawler = self::submit($form);
 
-		// Check it saved correctly.
-		$this->assertEquals(self::$config['moonbird_talk_api_key'], 'bluhbluh');
-
-		// Check it shows up in the form
+		// Check it replaces the previous value in the form.
 		$crawler = self::request('GET', 'adm/index.php?i=32&sid=' . $this->sid);
 		$this->assertEquals($crawler->filter('#moonbird_talk_api_key').html(), 'bluhbluh');
 	}
