@@ -41,7 +41,7 @@ $lang = array_merge($lang, array(
 
 	'TALK_EVENT'		=> ' :: Talk Event :: ',
 
-	'ACP_TALK_GOODBYE'			=> 'Should say goodbye?',
+	'ACP_TALK_API_KEY'			=> 'Moonbird Talk API Key',
 	'ACP_TALK_SETTING_SAVED'	=> 'Settings have been saved successfully!',
 
 	'MOONBIRD_TALK_NOTIFICATION'	=> 'Moonbird Talk notification',

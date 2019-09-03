@@ -4,10 +4,5 @@
 		<column>config_name</column>
 		<column>config_value</column>
 		<column>is_dynamic</column>
-		<row>
-			<value>moonbird_talk_api_key</value>
-			<value>foo</value>
-			<value>0</value>
-		</row>
 	</table>
 </dataset>

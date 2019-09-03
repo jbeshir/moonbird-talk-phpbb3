@@ -14,7 +14,7 @@ class install_acp_module extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return isset($this->config['moonbird_talk_goodbye']);
+		return isset($this->config['moonbird_talk_api_key']);
 	}
 
 	public static function depends_on()
@@ -25,7 +25,7 @@ class install_acp_module extends \phpbb\db\migration\migration
 	public function update_data()
 	{
 		return array(
-			array('config.add', array('moonbird_talk_goodbye', 0)),
+			array('config.add', array('moonbird_talk_api_key', 0)),
 
 			array('module.add', array(
 				'acp',

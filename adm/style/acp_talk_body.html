@@ -14,9 +14,8 @@
 	<fieldset>
 		<legend>{{ lang('SETTINGS') }}</legend>
 		<dl>
-			<dt><label for="moonbird_talk_goodbye">{{ lang('ACP_TALK_GOODBYE') ~ lang('COLON') }}</label></dt>
-			<dd><label><input type="radio" class="radio" name="moonbird_talk_goodbye" value="1"{% if MOONBIRD_TALK_GOODBYE %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="moonbird_talk_goodbye" value="0"{% if not MOONBIRD_TALK_GOODBYE %} checked="checked"{% endif %} /> {{ lang('NO') }}</label></dd>
+			<dt><label for="moonbird_talk_api_key">{{ lang('ACP_TALK_API_KEY') ~ lang('COLON') }}</label></dt>
+			<dd><label><input id="moonbird_talk_api_key" type="text" class="radio" name="moonbird_talk_api_key" value="{% MOONBIRD_TALK_API_KEY %}" /></dd>
 		</dl>
 	</fieldset>
 
