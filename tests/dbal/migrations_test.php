@@ -15,6 +15,9 @@ require_once __DIR__ . '/../../../../../includes/functions.php';
 
 class migrations_test extends \phpbb_database_test_case
 {
+	/** @var \phpbb\config\config */
+	protected $config;
+
 	/**
 	 * @inheritdoc
 	 */
@@ -26,12 +29,21 @@ class migrations_test extends \phpbb_database_test_case
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
+
+
 	/**
 	 * @inheritdoc
 	 */
 	public function getDataSet()
 	{
 		return $this->createXMLDataSet(__DIR__ . '/fixtures/config.xml');
+	}
+
+	public function setUp()
+	{
+		parent::setUp();
+
+		$this->config = new \phpbb\config\config(array());
 	}
 
 	/**
