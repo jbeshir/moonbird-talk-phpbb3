@@ -15,9 +15,6 @@ require_once __DIR__ . '/../../../../../includes/functions.php';
 
 class migrations_test extends \phpbb_database_test_case
 {
-	/** @var \phpbb\config\config */
-	protected $config;
-
 	/**
 	 * @inheritdoc
 	 */
@@ -37,21 +34,6 @@ class migrations_test extends \phpbb_database_test_case
 	public function getDataSet()
 	{
 		return $this->createXMLDataSet(__DIR__ . '/fixtures/config.xml');
-	}
-
-	public function setUp()
-	{
-		global $table_prefix;
-
-		parent::setUp();
-
-		$this->db = $this->new_dbal();
-
-		$this->config = new \phpbb\config\db(
-			$this->db,
-			new \phpbb\cache\driver\dummy(),
-			$table_prefix . 'config'
-		);
 	}
 
 	/**
@@ -74,6 +56,5 @@ class migrations_test extends \phpbb_database_test_case
 		$this->assertTrue($db_tools->sql_column_exists(POSTS_TABLE, 'mb_sentiment_version'), 'Asserting that column "mb_sentiment_version" exists');
 		$this->assertTrue($db_tools->sql_column_exists(POSTS_TABLE, 'mb_sentiment_magnitude'), 'Asserting that column "mb_sentiment_magnitude" exists');
 		$this->assertTrue($db_tools->sql_column_exists(POSTS_TABLE, 'mb_sentiment_score'), 'Asserting that column "mb_sentiment_score" exists');
-		$this->assertTrue($this->config->offsetExists('moonbird_talk_api_key'), 'Asserting that config item for API key has been created');
 	}
 }
