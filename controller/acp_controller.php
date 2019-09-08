@@ -107,7 +107,7 @@ class acp_controller
 			'U_ACTION'		=> $this->u_action,
 
 			'MOONBIRD_TALK_API_KEY'	=> $this->config['moonbird_talk_api_key'],
-			'MOONBIRD_TALK_API_KEY'	=> $this->config['moonbird_talk_project'],
+			'MOONBIRD_TALK_PROJECT'	=> $this->config['moonbird_talk_project'],
 		));
 	}
 
