@@ -23,37 +23,22 @@ class main_listener implements EventSubscriberInterface
 	public static function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup'							=> 'load_language_on_setup',
-	'core.display_forums_modify_template_vars'	=> 'display_forums_modify_template_vars',
+			'core.submit_post_end'	=> 'submit_post_end',
 		);
 	}
 
-	/* @var \phpbb\language\language */
-	protected $language;
+	/**
+	 * @var \moonbird\talk\service $service
+	 */
+	protected $service;
 
 	/**
 	 * Constructor
-	 *
-	 * @param \phpbb\language\language	$language	Language object
+	 * @param \moonbird\talk\service $service Service object
 	 */
-	public function __construct(\phpbb\language\language $language)
+	public function __construct($service)
 	{
-		$this->language = $language;
-	}
-
-	/**
-	 * Load common language files during user setup
-	 *
-	 * @param \phpbb\event\data	$event	Event object
-	 */
-	public function load_language_on_setup($event)
-	{
-		$lang_set_ext = $event['lang_set_ext'];
-		$lang_set_ext[] = array(
-			'ext_name' => 'moonbird/talk',
-			'lang_set' => 'common',
-		);
-		$event['lang_set_ext'] = $lang_set_ext;
+		$this->service = $service;
 	}
 
 	/**
@@ -62,10 +47,9 @@ class main_listener implements EventSubscriberInterface
 	 *
 	 * @param \phpbb\event\data	$event	Event object
 	 */
-	public function display_forums_modify_template_vars($event)
+	public function submit_post_end($event)
 	{
-		$forum_row = $event['forum_row'];
-		$forum_row['FORUM_NAME'] .= $this->language->lang('TALK_EVENT');
-		$event['forum_row'] = $forum_row;
+		$post_id = $event['data']['post_id'];
+		$this->service->submit_post($post_id);
 	}
 }

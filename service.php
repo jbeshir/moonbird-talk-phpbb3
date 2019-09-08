@@ -15,9 +15,6 @@ namespace moonbird\talk;
  */
 class service
 {
-	/** @var \phpbb\user */
-	protected $user;
-
 	/** @var \phpbb\config\config */
 	protected $config;
 
@@ -27,9 +24,13 @@ class service
 	 * @param \phpbb\user $user       User object
 	 * @param \phpbb\config\config	$config	Config object
 	 */
-	public function __construct(\phpbb\user $user, \phpbb\config\config $config)
+	public function __construct(\phpbb\config\config $config)
 	{
-		$this->user = $user;
 		$this->config = $config;
+	}
+
+	public function submit_post($post_id)
+	{
+		// NOT IMPLEMENTED
 	}
 }
