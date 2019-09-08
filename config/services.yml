@@ -17,7 +17,7 @@ services:
     moonbird.talk.listener:
         class: moonbird\talk\event\main_listener
         arguments:
-            - '@moonbird\talk\service'
+            - '@moonbird.talk.service'
         tags:
             - { name: event.listener }
 
