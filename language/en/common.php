@@ -36,8 +36,8 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'ACP_TALK_API_KEY'			=> 'Moonbird Talk API Key',
+	'ACP_TALK_PROJECT'			=> 'Moonbird Talk Project',
 	'ACP_TALK_SETTING_SAVED'	=> 'Settings have been saved successfully!',
 
 	'MOONBIRD_TALK_NOTIFICATION'	=> 'Moonbird Talk notification',
-
 ));

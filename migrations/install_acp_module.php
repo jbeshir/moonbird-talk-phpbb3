@@ -26,6 +26,7 @@ class install_acp_module extends \phpbb\db\migration\migration
 	{
 		return array(
 			array('config.add', array('moonbird_talk_api_key', '')),
+			array('config.add', array('moonbird_talk_project', '')),
 
 			array('module.add', array(
 				'acp',
