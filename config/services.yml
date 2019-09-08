@@ -13,6 +13,11 @@ services:
         class: moonbird\talk\service
         arguments:
             - '@config'
+            - '@dbal.conn'
+            - '@moonbird.talk.curl_service'
+
+    moonbird.talk.curl_service:
+      class: moonbird\talk\curl_service
 
     moonbird.talk.listener:
         class: moonbird\talk\event\main_listener

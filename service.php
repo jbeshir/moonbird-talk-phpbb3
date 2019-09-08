@@ -18,15 +18,24 @@ class service
 	/** @var \phpbb\config\config */
 	protected $config;
 
+	/** @var \phpbb\db\driver\factory */
+	protected $db;
+
+	/** @var \moonbird\talk\curl_service */
+	protected $curl_service;
+
 	/**
 	 * Constructor
 	 *
-	 * @param \phpbb\user $user       User object
 	 * @param \phpbb\config\config	$config	Config object
+	 * @param \phpbb\db\driver\factory $db DB object
+	 * @param \moonbird\talk\controller\ $curl_service Interface for remote HTTP requests
 	 */
-	public function __construct(\phpbb\config\config $config)
+	public function __construct(\phpbb\config\config $config, \phpbb\db\driver\factory $db, \moonbird\talk\curl_service $curl_service)
 	{
 		$this->config = $config;
+		$this->db = $db;
+		$this->curl_service = $curl_service;
 	}
 
 	public function submit_post($post_id)
