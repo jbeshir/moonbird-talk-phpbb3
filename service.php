@@ -60,7 +60,7 @@ class service
 
 			$result = json_decode($resultJson);
 
-			$this->db->sql_query("UPDATE {$table_prefix}posts SET mb_sentiment_version = 1, mb_sentiment_magnitude = {$result->SentimentMagnitude}, mb_sentiment_score = {$result->SentimentScore} WHERE post_id = {$post_id}");
+			$this->db->sql_query("UPDATE {$table_prefix}posts SET mb_sentiment_version = 1, mb_sentiment_magnitude = {$this->db->sql_escape($result->SentimentMagnitude)}, mb_sentiment_score = {$this->db->sql_escape($result->SentimentScore)} WHERE post_id = {$post_id}");
 		}
 	}
 }

@@ -64,10 +64,10 @@ class service_test extends \phpbb_test_case
 		global $table_prefix;
 		$this->db->expects($this->exactly(2))
 			->method('sql_query')
-			->with($this->logicalOr(
+			->withConsecutive(
 				$this->equalTo("SELECT mb_sentiment_version, forum_id, post_text, post_time FROM {$table_prefix}posts WHERE post_id = 17"),
 				$this->equalTo("UPDATE {$table_prefix}posts SET mb_sentiment_version = 1, mb_sentiment_magnitude = 3, mb_sentiment_score = 2 WHERE post_id = 17")
-			));
+			);
 
 		$this->db->expects($this->once())
 			->method('sql_fetchrow')
@@ -77,6 +77,17 @@ class service_test extends \phpbb_test_case
 		$this->db->expects($this->once())
 			->method('sql_freeresult')
 			->with(false);
+
+		$this->db->expects($this->exactly(2))
+			->method('sql_escape')
+			->withConsecutive(
+				$this->equalTo(3),
+				$this->equalTo(2)
+			)
+			->willReturnOnConsecutiveCalls(
+				3,
+				2
+			);
 
 		$this->curl_service->expects($this->once())
 			->method('post')
