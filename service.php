@@ -15,6 +15,8 @@ namespace moonbird\talk;
  */
 class service
 {
+	const MOONBIRD_TALK_API_PREFIX = 'https://talk.moonbird.io/api/';
+
 	/** @var \phpbb\config\config */
 	protected $config;
 
