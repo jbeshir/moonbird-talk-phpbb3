@@ -66,7 +66,7 @@ class service_test extends \phpbb_test_case
 			->method('sql_query')
 			->with($this->logicalOr(
 				$this->equalTo("SELECT mb_sentiment_version, forum_id, post_text, post_time FROM {$table_prefix}posts WHERE post_id = 17"),
-				$this->equalTo("\"UPDATE {$table_prefix}posts SET mb_sentiment_version = 1, mb_sentiment_magnitude = 3, mb_sentiment_score = 2 WHERE post_id = 17\"")
+				$this->equalTo("UPDATE {$table_prefix}posts SET mb_sentiment_version = 1, mb_sentiment_magnitude = 3, mb_sentiment_score = 2 WHERE post_id = 17")
 			));
 
 		$this->db->expects($this->once())
