@@ -98,7 +98,7 @@ class service_test extends \phpbb_test_case
 				'message' => 'Test happy post yay!',
 				'timestamp' => 123456,
 			))
-			->willReturn("{SentimentMagnitude:3,SentimentScore:2}");
+			->willReturn('{"SentimentMagnitude":3,"SentimentScore":2}');
 
 		$this->service->submit_post(17);
 	}
