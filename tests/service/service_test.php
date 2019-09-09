@@ -37,7 +37,7 @@ class service_test extends \phpbb_test_case
 		$this->service = new \moonbird\talk\service($this->config, $this->db, $this->curl_service);
 	}
 
-	public function submit_post_already_done()
+	public function test_submit_post_already_done()
 	{
 		global $table_prefix;
 		$this->db->expects($this->once())
@@ -59,7 +59,7 @@ class service_test extends \phpbb_test_case
 		$this->service->submit_post(17);
 	}
 
-	public function submit_post_new()
+	public function test_submit_post_new()
 	{
 		global $table_prefix;
 		$this->db->expects($this->once())
@@ -84,7 +84,7 @@ class service_test extends \phpbb_test_case
 				'message' => 'Test happy post yay!',
 				'timestamp' => 123456,
 			))
-			->willReturn("{}");
+			->willReturn("{SentimentMagnitude:3,SentimentScore:2}");
 
 		$this->db->expects($this->once())
 			->method('sql_query')

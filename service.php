@@ -42,6 +42,25 @@ class service
 
 	public function submit_post($post_id)
 	{
-		// NOT IMPLEMENTED
+		global $table_prefix;
+		$this->db->sql_query("SELECT mb_sentiment_version, forum_id, post_text, post_time FROM {$table_prefix}posts WHERE post_id = {$post_id}");
+		$row = $this->db->sql_fetchrow(false);
+		$this->db->sql_freeresult(false);
+
+		if ($row['mb_sentiment_version'] === 0)
+		{
+			$resultJson = $this->curl_service->post(\moonbird\talk\service::MOONBIRD_TALK_API_PREFIX . "submit",
+				array(
+					'apitoken' => $this->config['moonbird_talk_api_key'],
+					'space' => $this->config['moonbird_talk_project'],
+					'channel' => $row['forum_id'],
+					'message' => $row['post_text'],
+					'timestamp' => $row['post_time'],
+				));
+
+			$result = json_decode($resultJson);
+
+			$this->db->sql_query("UPDATE {$table_prefix}posts SET mb_sentiment_version = 1, mb_sentiment_magnitude = {$result->SentimentMagnitude}, mb_sentiment_score = {$result->SentimentScore} WHERE post_id = {$post_id}");
+		}
 	}
 }
