@@ -62,9 +62,12 @@ class service_test extends \phpbb_test_case
 	public function test_submit_post_new()
 	{
 		global $table_prefix;
-		$this->db->expects($this->once())
+		$this->db->expects($this->exactly(2))
 			->method('sql_query')
-			->with("SELECT mb_sentiment_version, forum_id, post_text, post_time FROM {$table_prefix}posts WHERE post_id = 17");
+			->with($this->logicalOr(
+				$this->equalTo("SELECT mb_sentiment_version, forum_id, post_text, post_time FROM {$table_prefix}posts WHERE post_id = 17"),
+				$this->equalTo("\"UPDATE {$table_prefix}posts SET mb_sentiment_version = 1, mb_sentiment_magnitude = 3, mb_sentiment_score = 2 WHERE post_id = 17\"")
+			));
 
 		$this->db->expects($this->once())
 			->method('sql_fetchrow')
@@ -85,10 +88,6 @@ class service_test extends \phpbb_test_case
 				'timestamp' => 123456,
 			))
 			->willReturn("{SentimentMagnitude:3,SentimentScore:2}");
-
-		$this->db->expects($this->once())
-			->method('sql_query')
-			->with("UPDATE {$table_prefix}posts SET mb_sentiment_version = 1, mb_sentiment_magnitude = 3, mb_sentiment_score = 2 WHERE post_id = 17");
 
 		$this->service->submit_post(17);
 	}
