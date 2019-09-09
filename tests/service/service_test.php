@@ -72,7 +72,7 @@ class service_test extends \phpbb_test_case
 		$this->db->expects($this->once())
 			->method('sql_fetchrow')
 			->with(false)
-			->willReturn(array('mb_sentiment_version' => 0, 'forum_id' => 2, 'post_text' => 'Test happy post yay!', post_time => 123456));
+			->willReturn(array('mb_sentiment_version' => 0, 'forum_id' => 2, 'post_text' => 'Test happy post yay!', 'post_time' => 123456));
 
 		$this->db->expects($this->once())
 			->method('sql_freeresult')
