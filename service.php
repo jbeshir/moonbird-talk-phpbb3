@@ -40,6 +40,41 @@ class service
 		$this->curl_service = $curl_service;
 	}
 
+	public function get_unsubmitted_posts()
+	{
+		global $table_prefix;
+
+		$this->db->sql_query("SELECT post_id FROM {$table_prefix}posts WHERE mb_sentiment_version = 0 LIMIT 1000");
+		$results = $this->db->sql_fetchrowset();
+		$this->db->sql_freeresult(false);
+
+		$ids = array();
+		foreach ($results as $result) {
+			$ids[] = $result['post_id'];
+		}
+
+		return $ids;
+	}
+
+	public function get_unsubmitted_post_count()
+	{
+		global $table_prefix;
+
+		$this->db->sql_query("SELECT COUNT(*) FROM {$table_prefix}posts WHERE mb_sentiment_version = 0");
+		$result = $this->db->sql_fetchrow();
+		$this->db->sql_freeresult(false);
+
+		return $result['COUNT(*)'];
+	}
+
+	public function submit_all_posts($post_id)
+	{
+		global $table_prefix;
+
+		$row = $this->db->sql_fetchrow(false);
+		$this->db->sql_freeresult(false);
+	}
+
 	public function submit_post($post_id)
 	{
 		global $table_prefix;

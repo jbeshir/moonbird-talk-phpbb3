@@ -29,6 +29,14 @@
 		{{ S_FORM_TOKEN }}
 	</fieldset>
 
+	<fieldset>
+		<dl>
+			<dt><label for="moonbird_posts_unsubmitted_count">{{ lang('MOONBIRD_UNSUBMITTED_POSTS') ~ lang('COLON') }}</label></dt>
+			<dd><label><span id="moonbird_posts_unsubmitted_count" name="moonbird_posts_unsubmitted_count">{{ MOONBIRD_POSTS_UNSUBMITTED_COUNT }}</span></label></dd>
+		</dl>
+		<input class="button1" type="submit" id="submit_all" name="submit_all" value="{{ lang('MOONBIRD_SUBMIT_BATCH') }}" />&nbsp;
+	</fieldset>
+
 </form>
 
 {% include 'overall_footer.html' %}

@@ -37,6 +37,29 @@ class service_test extends \phpbb_test_case
 		$this->service = new \moonbird\talk\service($this->config, $this->db, $this->curl_service);
 	}
 
+	public function test_get_unsubmitted_post_count()
+	{
+		global $table_prefix;
+		$this->db->expects($this->once())
+			->method('sql_query')
+			->with("SELECT COUNT(*) FROM {$table_prefix}posts WHERE mb_sentiment_version = 0");
+
+		$this->db->expects($this->once())
+			->method('sql_fetchrow')
+			->with(false)
+			->willReturn(array('COUNT(*)' => 10));
+
+		$this->db->expects($this->once())
+			->method('sql_freeresult')
+			->with(false);
+
+		$this->curl_service->expects($this->never())
+			->method('post');
+
+		$count = $this->service->get_unsubmitted_post_count();
+		$this->assertEquals(10, $count);
+	}
+
 	public function test_submit_post_already_done()
 	{
 		global $table_prefix;

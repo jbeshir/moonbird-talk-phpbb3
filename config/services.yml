@@ -8,6 +8,7 @@ services:
             - '@request'
             - '@template'
             - '@user'
+            - '@moonbird.talk.service'
 
     moonbird.talk.service:
         class: moonbird\talk\service

@@ -39,4 +39,7 @@ $lang = array_merge($lang, array(
 	'ACP_TALK'			=> 'Moonbird Talk Settings',
 
 	'LOG_ACP_TALK_SETTINGS'		=> '<strong>Moonbird Talk settings updated</strong>',
+
+	'MOONBIRD_UNSUBMITTED_POSTS' => 'Posts not submitted to Moonbird Talk',
+	'MOONBIRD_SUBMIT_BATCH' => 'Submit batch (up to 1000)',
 ));

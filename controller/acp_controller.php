@@ -33,6 +33,9 @@ class acp_controller
 	/** @var \phpbb\user */
 	protected $user;
 
+	/** @var \moonbird\talk\service */
+	protected $service;
+
 	/** @var string Custom form action */
 	protected $u_action;
 
@@ -46,7 +49,7 @@ class acp_controller
 	 * @param \phpbb\template\template	$template	Template object
 	 * @param \phpbb\user				$user		User object
 	 */
-	public function __construct(\phpbb\config\config $config, \phpbb\language\language $language, \phpbb\log\log $log, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user)
+	public function __construct(\phpbb\config\config $config, \phpbb\language\language $language, \phpbb\log\log $log, \phpbb\request\request $request, \phpbb\template\template $template, \phpbb\user $user, \moonbird\talk\service $service)
 	{
 		$this->config	= $config;
 		$this->language	= $language;
@@ -54,6 +57,7 @@ class acp_controller
 		$this->request	= $request;
 		$this->template	= $template;
 		$this->user		= $user;
+		$this->service  = $service;
 	}
 
 	/**
@@ -108,6 +112,7 @@ class acp_controller
 
 			'MOONBIRD_TALK_API_KEY'	=> $this->config['moonbird_talk_api_key'],
 			'MOONBIRD_TALK_PROJECT'	=> $this->config['moonbird_talk_project'],
+			'MOONBIRD_POSTS_UNSUBMITTED_COUNT' => $this->service->get_unsubmitted_post_count(),
 		));
 	}
 
