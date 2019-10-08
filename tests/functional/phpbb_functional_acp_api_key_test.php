@@ -27,14 +27,5 @@ class phpbb_functional_acp_api_key_test extends phpbb_functional_test_case
 		$this->assertEquals($crawler->filter('#moonbird_talk_api_key')->attr('value'), 'bluhbluh');
 		$this->assertEquals($crawler->filter('#moonbird_talk_project')->attr('value'), 'foobar');
 	}
-
-	public function test_acp_unsubmitted_count()
-	{
-		$this->login();
-		$this->admin_login();
-
-		$crawler = self::request('GET', 'adm/index.php?i=32&sid=' . $this->sid);
-		$this->assertEquals($crawler->filter('#moondird_post_unsubmitted_count')->text(), '0');
-	}
 }
 
