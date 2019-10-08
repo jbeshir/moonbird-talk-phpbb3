@@ -49,7 +49,8 @@ class service
 		$this->db->sql_freeresult(false);
 
 		$ids = array();
-		foreach ($results as $result) {
+		foreach ($results as $result)
+		{
 			$ids[] = $result['post_id'];
 		}
 
